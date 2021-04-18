@@ -1,0 +1,3 @@
+[submodule "ext/litehtml"]
+	path = ext/litehtml
+	url = ../../litehtml/litehtml.git

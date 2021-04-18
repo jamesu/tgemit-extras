@@ -1,0 +1,40 @@
+targets:
+  litehtml:
+    type: library.static
+    platform: macOS
+    templates: 
+      - ExtraLibBase
+    sources:
+      - path: ../ext/litehtml/src
+        group: Libs
+        headerVisibility: project
+    settings:
+      base:
+        CLANG_ENABLE_OBJC_ARC: false
+        HEADER_SEARCH_PATHS:
+          - ${TGEMIT_EXTRAS}/ext/litehtml/include
+          - ${TGEMIT_EXTRAS}/ext/litehtml/include/litehtml
+          - ${TGEMIT_EXTRAS}/ext/litehtml/src/gumbo/include/gumbo
+          - ${TGEMIT_EXTRAS}/ext/litehtml/src/gumbo/include
+        GCC_PREPROCESSOR_DEFINITIONS:
+          - LITEHTML_UTF8
+
+  Litehtml_Demo:
+    type: application
+    platform: macOS
+    dependencies: 
+      - target: litehtml
+    templates: 
+      - EngineCore
+      - EngineCompileEnv
+      - EngineLibs
+      - BaseApp
+    sources:
+      - path: ../engine/gui/guiHTMLControl.cc
+    settings:
+      base:
+        TORQUE_EXTRA_SEARCH_PATHS:
+          - ${TGEMIT_EXTRAS}/ext/litehtml/include
+        EXTRA_TORQUE_DEFS:
+          - LITEHTML_UTF8
+
